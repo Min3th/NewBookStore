@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import BookLayer from '../Components/BookLayer';
 
 // TypeScript types for the book objects
 interface Book {
@@ -29,6 +30,7 @@ const BASE_URL =
   'https://01d11625-95c9-4950-aac4-0db881d6a8a1-dev.e1-us-east-azure.choreoapis.dev/bookstore/bookstore-new/v1.0';
 
 const Home: React.FC = () => {
+
   const [books, setBooks] = useState<Book[]>([]);
   const [newBook, setNewBook] = useState<BookInsert>({
     book_title: '',
@@ -101,6 +103,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="App">
+      <BookLayer/>
       <h1>Bookstore</h1>
 
       <h2>Create a New Book</h2>
