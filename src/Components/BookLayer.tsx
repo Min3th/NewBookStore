@@ -73,7 +73,7 @@ const BookLayer: React.FC = () => {
 
   return (
     <div className="w-screen min-h-screen bg-[#C4A484] flex flex-col items-center">
-      <h1 className='mt-10 text-[50px]'>BookLayer</h1>
+      <h1 className='mt-10 text-[50px] m-5'>BOOKS</h1>
       <div className="flex flex-row items-center justify-center gap-4">
         {books.map((book) => (
           <BookCard key={book.id} book={book}/>
