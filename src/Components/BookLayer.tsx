@@ -1,6 +1,7 @@
 import { useAuthContext } from '@asgardeo/auth-react';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import BookCard from './BookCard';
 
 const REACT_APP_BASE_URL =
   'https://01d11625-95c9-4950-aac4-0db881d6a8a1-prod.e1-us-east-azure.choreoapis.dev/bookstore/bookstore-new/v1.0';
@@ -17,8 +18,30 @@ interface Book {
   copies_in_stock: number;
 }
 
+
+
 const BookLayer: React.FC = () => {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<Book[]>([
+    {
+      id: 1,
+      book_title: "The Great Gatsby",
+      author: "F. Scott Fitzgerald",
+      category: "Fiction",
+      published_year: 1925,
+      price: 10.99,
+      copies_in_stock: 5,
+    },
+    {
+      id: 2,
+      book_title: "To Kill a Mockingbird",
+      author: "Harper Lee",
+      category: "Fiction",
+      published_year: 1960,
+      price: 7.99,
+      copies_in_stock: 10,
+    },
+  ]);
+  
   
 
   const {getAccessToken} = useAuthContext();

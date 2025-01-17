@@ -12,5 +12,5 @@
     "jsx": "react-jsx",
     "resolveJsonModule": true
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/declarations.d.ts"]
 }
