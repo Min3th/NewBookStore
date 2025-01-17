@@ -50,19 +50,18 @@ const BookLayer: React.FC = () => {
     try {
       const accessToken = await getAccessToken();
       console.log('access token:',accessToken);
-      const response = await axios.get<Book[]>('https://01d11625-95c9-4950-aac4-0db881d6a8a1-prod.e1-us-east-azure.choreoapis.dev/bookstore/bookstore-new/v1.0/books', {
-        headers: {
-          "Content-Type": "application/json",
-          'Test-Key': SECURITY_HEADER,
+      // const response = await axios.get<Book[]>('https://01d11625-95c9-4950-aac4-0db881d6a8a1-prod.e1-us-east-azure.choreoapis.dev/bookstore/bookstore-new/v1.0/books', {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     'Test-Key': SECURITY_HEADER,
 
-          // Authorization: "Bearer " + accessToken,
-          // "x-jwt-assertion": accessToken,
-        }
-      });
-      console.log("hello hello")
-      console.log(response.data)
+   
+      //   }
+      // });
+      // console.log("hello hello")
+      // console.log(response.data)
 
-      setBooks(response.data);
+      // setBooks(response.data); 
     } catch (error) {
       console.error('Error fetching books:', error);
     }
@@ -75,11 +74,10 @@ const BookLayer: React.FC = () => {
   return (
     <div className="w-screen min-h-screen bg-[#C4A484] flex flex-col items-center">
       <h1 className='mt-10 text-[50px]'>BookLayer</h1>
-      <div className="text-blue-500">
+      <div className="flex flex-row items-center justify-center gap-4">
         {books.map((book) => (
-          <div key={book.id}>
-            {book.book_title} by {book.author}
-          </div>
+          <BookCard key={book.id} book={book}/>
+          
         ))}
       </div>
     </div>

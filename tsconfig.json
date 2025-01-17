@@ -12,5 +12,9 @@
     "jsx": "react-jsx",
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/declarations.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/custom.d.ts" // Include custom.d.ts here if it's outside the src folder
+  ]
 }
