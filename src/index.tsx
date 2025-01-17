@@ -6,8 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from "@asgardeo/auth-react";
 
 const config = {
-  signInRedirectURL: "https://localhost:3000/BookStore",
-  signOutRedirectURL: "https://localhost:3000",
+  signInRedirectURL: "http://localhost:3000/BookStore",
+  signOutRedirectURL:"http://localhost:3000",
   clientID: "8RBXh7Ipwl00F_jKW68UaTAImNca",
   baseUrl: "https://api.asgardeo.io/t/min3thindustries",
   scope: ["openid", "profile"],

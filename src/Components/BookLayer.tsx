@@ -1,3 +1,4 @@
+import { useAuthContext } from '@asgardeo/auth-react';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
@@ -18,23 +19,29 @@ interface Book {
 
 const BookLayer: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
-  console.log('test-key:',SECURITY_HEADER);
+  
+
+  const {getAccessToken} = useAuthContext();
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get<Book[]>(`${REACT_APP_BASE_URL}/books`, {
+      const accessToken = await getAccessToken();
+      console.log('access token:',accessToken);
+      const response = await axios.get<Book[]>('https://01d11625-95c9-4950-aac4-0db881d6a8a1-prod.e1-us-east-azure.choreoapis.dev/bookstore/bookstore-new/v1.0/books', {
         headers: {
-          Authorization: `Bearer ${SECURITY_HEADER}`,
-          Accept: 'application/json',
-        },
+          "Content-Type": "application/json",
+          'Test-Key': SECURITY_HEADER,
+
+          // Authorization: "Bearer " + accessToken,
+          // "x-jwt-assertion": accessToken,
+        }
       });
+      console.log("hello hello")
+      console.log(response.data)
+
       setBooks(response.data);
-      console.log('Books fetched successfully:', response.data);
     } catch (error) {
       console.error('Error fetching books:', error);
-      if (axios.isAxiosError(error)) {
-        console.error('Axios error:', error.response?.data);
-      }
     }
   };
 
@@ -43,8 +50,8 @@ const BookLayer: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-[200px] h-[100px] bg-lime-300">
-      <h1>BookLayer</h1>
+    <div className="w-screen min-h-screen bg-[#C4A484] flex flex-col items-center">
+      <h1 className='mt-10 text-[50px]'>BookLayer</h1>
       <div className="text-blue-500">
         {books.map((book) => (
           <div key={book.id}>

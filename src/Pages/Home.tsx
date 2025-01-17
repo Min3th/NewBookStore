@@ -126,6 +126,9 @@ const Home: React.FC = () => {
 
       <button className='text-[30px] rounded-[10px] p-2 bg-blue-600 m-2' onClick={ () => signIn() }>Login</button>
 
+      <button className='text-[30px] rounded-[10px] p-2 bg-red-500 m-2' onClick={ () => signOut() }>Logout</button>
+
+
      
        
       
