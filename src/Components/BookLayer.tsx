@@ -52,9 +52,10 @@ const BookLayer: React.FC = () => {
   const handleCreateBook = async () => {
     try {
       const accessToken = await getAccessToken();
+      console.log(newBook);
       const response = await axios.post<number[]>(
         `${REACT_APP_BASE_URL}/books`,
-        [newBook],
+        newBook,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -70,14 +71,20 @@ const BookLayer: React.FC = () => {
         author: '',
         category: '',
         published_year: new Date().getFullYear(),
-        price: 0,
+        price: 0.0,
         copies_in_stock: 0,
       });
     } catch (err) {
       setError('Failed to create a book. Please try again.');
-      console.error('Error creating book:', err);
-    }
+      
+      if (axios.isAxiosError(err)) {
+        console.error('Error response:', err.response?.data || 'No response data');
+        console.error('Status:', err.response?.status || 'No status code');
+      } else {
+        console.error('Unexpected error:', err);
+      }
   };
+}
 
   useEffect(() => {
     fetchBooks();
@@ -99,6 +106,15 @@ const BookLayer: React.FC = () => {
         }}
         className="flex flex-col gap-4 p-4 bg-[#8b6c5c] rounded shadow-md m-8"
       >
+        <input
+          className='rounded-[2px] text-center'
+          type="number"
+          placeholder="ID"
+          value={newBook.id}
+          onChange={(e) =>
+            setNewBook({ ...newBook, id:Number(e.target.value) })
+          }        
+        />
         <input
           className='rounded-[2px] text-center'
           type="text"
