@@ -105,11 +105,11 @@ const Home: React.FC = () => {
   // };
 
   return (
-    <div className='flex flex-col items-center justify-center w-screen min-h-screen'>
+    <div className='flex flex-col items-center justify-center w-screen min-h-screen bg-[#C4A484]'>
       <div className='font-medium text-[30px]'>Welcome to the</div>
-      <div className='font-semibold text-[100px] rounded-[10px] bg-slate-300 shadow-lg p-4 tracking-wide'>BOOKSTORE</div>
+      <div className='font-semibold text-[100px] rounded-[10px] bg-[#7a5f51] shadow-lg p-4 tracking-[0.06em]'>BOOKSTORE</div>
 
-      <button className='text-[30px] rounded-[10px] p-2 bg-blue-600 m-2' onClick={ () => signIn() }>Login</button>
+      <button className='text-[30px] rounded-[10px] p-2 bg-[#8b6c5c] m-2' onClick={ () => signIn() }>Login</button>
 
       
 

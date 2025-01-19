@@ -29,7 +29,7 @@ const BookCard: React.FC<BookCardProps> = ({ book,onDelete,onUpdate}) => {
     setIsEditing(false);
   };
   return (
-    <div className=" p-4 rounded-md shadow-lg max-w-sm transform hover:scale-110 transition-transform duration-300 bg-[#622A0F] flex flex-col items-center">
+    <div className=" p-4 rounded-md shadow-lg max-w-sm transform hover:scale-110 transition-transform duration-300 bg-[#7a5f51] flex flex-col items-center">
       <img 
         src={mockingjay}
         alt={book.book_title}
