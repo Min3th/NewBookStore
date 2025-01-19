@@ -75,23 +75,8 @@ const Home: React.FC = () => {
   //   }
   // };
 
-  // // Create a new book
-  // const handleCreateBook = async () => {
-  //   try {
-  //     const response = await axios.post<number[]>(`${BASE_URL}/books`, [newBook]);
-  //     setBooks([...books, { ...newBook, id: response.data[0] }]); // Assuming the response returns an array of IDs
-  //     setNewBook({
-  //       book_title: '',
-  //       author: '',
-  //       category: '',
-  //       published_year: 2021,
-  //       price: 0,
-  //       copies_in_stock: 0,
-  //     });
-  //   } catch (error) {
-  //     console.error('Error creating book:', error);
-  //   }
-  // };
+  // Create a new book
+  
 
   // // Update a book
   // const handleUpdateBook = async () => {
@@ -126,7 +111,7 @@ const Home: React.FC = () => {
 
       <button className='text-[30px] rounded-[10px] p-2 bg-blue-600 m-2' onClick={ () => signIn() }>Login</button>
 
-      <button className='text-[30px] rounded-[10px] p-2 bg-red-500 m-2' onClick={ () => signOut() }>Logout</button>
+      
 
 
      
