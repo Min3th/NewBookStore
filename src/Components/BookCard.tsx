@@ -35,23 +35,8 @@ const BookCard: React.FC<BookCardProps> = ({ book,onDelete,onUpdate}) => {
         alt={book.book_title}
         className="w-[200px] h-[300px]  rounded-md mb-4"
       />
-      <h2 className="text-lg font-bold mb-2 text-white">{book.book_title}</h2>
-      <p className="text-white mb-1">
-        <strong>Author:</strong> {book.author}
-      </p>
-      <p className="text-white mb-1">
-        <strong>Category:</strong> {book.category}
-      </p>
-      <p className="text-white mb-1">
-        <strong>Published Year:</strong> {book.published_year}
-      </p>
-      <p className="text-white mb-1">
-        <strong>Price:</strong> ${book.price.toFixed(2)}
-      </p>
-      <p className="text-white mb-1">
-        <strong>Copies Available:</strong> {book.copies_in_stock}
-      </p>
-
+      
+      
       {isEditing ? (
         <>
           <input
@@ -105,29 +90,54 @@ const BookCard: React.FC<BookCardProps> = ({ book,onDelete,onUpdate}) => {
             placeholder="Year"
           />
           {/* Add other input fields for editing as needed */}
-          <button onClick={handleSave} className="bg-green-500 text-white p-2 rounded">
-            Save
-          </button>
+          
         </>
       ) : (
-        <>
-          <h3>{book.book_title}</h3>
-          <p>Author: {book.author}</p>
+        
+        <div className='text-left'>
+          <h2 className="text-lg font-bold mb-2 text-white">{book.book_title}</h2>
+          <p className="text-white mb-1 text-left">
+            <strong className='text-left'>Author:</strong> {book.author}
+          </p>
+          <p className="text-white mb-1 text-left">
+            <strong className='text-left'>Category:</strong> {book.category}
+          </p>
+          <p className="text-white mb-1">
+            <strong>Published Year:</strong> {book.published_year}
+          </p>
+          <p className="text-white mb-1">
+            <strong>Price:</strong> ${book.price.toFixed(2)}
+          </p>
+          <p className="text-white mb-1">
+            <strong>Copies Available:</strong> {book.copies_in_stock}
+          </p>
+
+        
           {/* Add other book details here */}
-          <button
-            onClick={() => setIsEditing(true)}
-            className="bg-blue-500 text-white p-2 rounded"
-          >
-            Edit
-          </button>
-        </>
+          
+        
+
+        </div>
+          
       )}
-      <button
-      onClick={() => onDelete(book.id)}
-      className="mt-2 bg-red-500 text-white py-1 px-3 rounded"
-      >
-        Delete
-      </button>
+      <div className='flex flex-row gap-4'>
+      {isEditing ? (<button onClick={handleSave} className="bg-green-500 text-white p-2 rounded">
+            Save
+          </button>):(<button
+              onClick={() => setIsEditing(true)}
+              className="bg-blue-500 text-white p-2 rounded"
+            >
+              Edit
+            </button>
+        )}
+        <button
+        onClick={() => onDelete(book.id)}
+        className=" bg-red-500 text-white p-2 rounded"
+        >
+          Delete
+        </button>
+      </div>
+      
     </div>
   );
 };
