@@ -40,13 +40,14 @@ const BookCard: React.FC<BookCardProps> = ({ book,onDelete,onUpdate}) => {
       {isEditing ? (
         <>
           <input
+              className=''
               type="number"
               value={editedBook.id}
               onChange={e => setEditedBook({ ...editedBook, id: Number(e.target.value) })}
               placeholder="ID"
             />
           <input
-            className="rounded-[2px] text-center"
+            className="rounded-[2px] "
             type="text"
             value={editedBook.book_title}
             onChange={(e) =>
@@ -54,7 +55,7 @@ const BookCard: React.FC<BookCardProps> = ({ book,onDelete,onUpdate}) => {
             }
           />
           <input
-            className="rounded-[2px] text-center"
+            className="rounded-[2px] "
             type="text"
             value={editedBook.author}
             onChange={(e) =>
@@ -97,19 +98,19 @@ const BookCard: React.FC<BookCardProps> = ({ book,onDelete,onUpdate}) => {
         <div className='text-left'>
           <h2 className="text-lg font-bold mb-2 text-white">{book.book_title}</h2>
           <p className="text-white mb-1 text-left">
-            <strong className='text-left'>Author:</strong> {book.author}
+            Author:{book.author}
           </p>
           <p className="text-white mb-1 text-left">
-            <strong className='text-left'>Category:</strong> {book.category}
+            Category: {book.category}
           </p>
           <p className="text-white mb-1">
-            <strong>Published Year:</strong> {book.published_year}
+            Published Year:{book.published_year}
           </p>
           <p className="text-white mb-1">
-            <strong>Price:</strong> ${book.price.toFixed(2)}
+            Price: ${book.price.toFixed(2)}
           </p>
           <p className="text-white mb-1">
-            <strong>Copies Available:</strong> {book.copies_in_stock}
+           Copies Available: {book.copies_in_stock}
           </p>
 
         

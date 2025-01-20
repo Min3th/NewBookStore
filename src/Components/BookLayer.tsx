@@ -2,6 +2,7 @@ import { useAuthContext } from '@asgardeo/auth-react';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import BookCard from './BookCard';
+import BookForm from './BookForm';
 
 const REACT_APP_BASE_URL =
   'https://01d11625-95c9-4950-aac4-0db881d6a8a1-prod.e1-us-east-azure.choreoapis.dev/bookstore/bookstore-new/v1.0';
@@ -139,6 +140,10 @@ const BookLayer: React.FC = () => {
     }
   };
 
+  const handleInputChange = (field: keyof Book, value: string | number) => {
+    setNewBook({ ...newBook, [field]: value });
+  };
+
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -148,80 +153,21 @@ const BookLayer: React.FC = () => {
       <button className='text-[20px] absolute top-3 right-3 rounded-[10px] p-2 bg-red-500 m-2' onClick={ () => signOut() }>Logout</button>
       <h1 className="mt-10 text-[50px] m-5">BOOKS</h1>
       {error && <p className="text-red-500">{error}</p>}
-      <div className="flex flex-row items-center justify-center gap-4">
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} onDelete={handleDeleteBook} onUpdate={handleUpdateBook} />
-        ))}
+      <div className='flex flex-row'>
+        <BookForm
+            book={newBook}
+            onSubmit={handleCreateBook}
+            onInputChange={handleInputChange}
+        />
+        <div className="flex flex-row items-center justify-center gap-4">
+          {books.map((book) => (
+            <BookCard key={book.id} book={book} onDelete={handleDeleteBook} onUpdate={handleUpdateBook} />
+          ))}
+        </div>
+        
       </div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleCreateBook();
-        }}
-        className="flex flex-col gap-4 p-4 bg-[#8b6c5c] rounded shadow-md m-8"
-      >
-        <input
-          className='rounded-[2px] text-center'
-          type="number"
-          placeholder="ID"
-          value={newBook.id}
-          onChange={(e) =>
-            setNewBook({ ...newBook, id:Number(e.target.value) })
-          }        
-        />
-        <input
-          className='rounded-[2px] text-center'
-          type="text"
-          placeholder="Book Title"
-          value={newBook.book_title}
-          onChange={(e) =>
-            setNewBook({ ...newBook, book_title: e.target.value })
-          }        
-        />
-        <input
-          className='rounded-[2px] text-center'
-          type="text"
-          placeholder="Author"
-          value={newBook.author}
-          onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
-        />
-        <input
-          className='rounded-[2px] text-center'
-          type="text"
-          placeholder="Category"
-          value={newBook.category}
-          onChange={(e) => setNewBook({ ...newBook, category: e.target.value })}
-        />
-        <input
-          className='rounded-[2px] text-center'
-          type="number"
-          placeholder="Published Year"
-          value={newBook.published_year}
-          onChange={(e) =>
-            setNewBook({ ...newBook, published_year: Number(e.target.value) })
-          }
-        />
-        <input
-          className='rounded-[2px] text-center'
-          type="number"
-          placeholder="Price"
-          value={newBook.price}
-          onChange={(e) => setNewBook({ ...newBook, price: Number(e.target.value) })}
-        />
-        <input
-          className='rounded-[2px] text-center'
-          type="number"
-          placeholder="Copies in Stock"
-          value={newBook.copies_in_stock}
-          onChange={(e) =>
-            setNewBook({ ...newBook, copies_in_stock: Number(e.target.value) })
-          }
-        />
-        <button type="submit" className="bg-[#7a5f51] shadow-lg text-white py-2 px-4 rounded">
-          Add Book
-        </button>
-      </form>
     </div>
+      
   );
 };
 
