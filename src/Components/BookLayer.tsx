@@ -1,8 +1,9 @@
 import { useAuthContext } from '@asgardeo/auth-react';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import BookCard from './BookCard';
 import BookForm from './BookForm';
+import * as bookService from './BookService'
 
 const REACT_APP_BASE_URL =
   'https://01d11625-95c9-4950-aac4-0db881d6a8a1-prod.e1-us-east-azure.choreoapis.dev/bookstore/bookstore-new/v1.0';
@@ -36,13 +37,7 @@ const BookLayer: React.FC = () => {
   const fetchBooks = async () => {
     try {
       const accessToken = await getAccessToken();
-      const response = await axios.get<Book[]>(`${REACT_APP_BASE_URL}/books`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-          'Test-Key': SECURITY_HEADER,
-        },
-      });
+      const response = await bookService.getBooks(accessToken);
       setBooks(response.data);
     } catch (err) {
       setError('Failed to fetch books. Please try again.');
@@ -50,21 +45,11 @@ const BookLayer: React.FC = () => {
     }
   };
 
-  const handleCreateBook = async () => {
+  const handleCreateBook =useCallback(async () => {
     try {
       const accessToken = await getAccessToken();
       console.log(newBook);
-      const response = await axios.post<number[]>(
-        `${REACT_APP_BASE_URL}/books`,
-        newBook,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-            'Test-Key': SECURITY_HEADER,
-          },
-        }
-      );
+      const response = await bookService.createBook(accessToken, newBook);
       setBooks([...books, { ...newBook, id: response.data[0] }]);
       setNewBook({
         id: 0,
@@ -85,9 +70,8 @@ const BookLayer: React.FC = () => {
         console.error('Unexpected error:', err);
       }
     };
-  }
-
-  const handleUpdateBook = async (updatedBook: Book) => {
+  },[getAccessToken,newBook]) 
+  const handleUpdateBook = useCallback(async (updatedBook: Book) => {
     try {
       const accessToken = await getAccessToken();
   
@@ -118,11 +102,10 @@ const BookLayer: React.FC = () => {
         console.error('Unexpected error:', err);
       }
     }
-  };
-  
+  },[[books]])
   
 
-  const handleDeleteBook = async (id: number) => {
+  const handleDeleteBook =useCallback(async (id: number) => {
     try {
       const accessToken = await getAccessToken();
       await axios.delete(`${REACT_APP_BASE_URL}/books/${id}`, {
@@ -138,7 +121,7 @@ const BookLayer: React.FC = () => {
       setError('Failed to delete the book. Please try again.');
       console.error('Error deleting book:', err);
     }
-  };
+  },[books])
 
   const handleInputChange = (field: keyof Book, value: string | number) => {
     setNewBook({ ...newBook, [field]: value });
