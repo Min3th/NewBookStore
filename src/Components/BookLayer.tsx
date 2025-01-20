@@ -148,6 +148,18 @@ const BookLayer: React.FC = () => {
     fetchBooks();
   }, []);
 
+  const debounce = (func: Function, delay: number) => {
+    let timer: NodeJS.Timeout;
+    return (...args: any[]) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  const debouncedHandleCreateBook = debounce(handleCreateBook, 500);
+
+  
+
   return (
     <div className="w-screen min-h-screen bg-[#C4A484] flex flex-col items-center">
       <button className='text-[20px] absolute top-3 right-3 rounded-[10px] p-2 bg-red-500 m-2' onClick={ () => signOut() }>Logout</button>
@@ -156,7 +168,7 @@ const BookLayer: React.FC = () => {
       <div className='flex flex-row'>
         <BookForm
             book={newBook}
-            onSubmit={handleCreateBook}
+            onSubmit={debouncedHandleCreateBook}
             onInputChange={handleInputChange}
         />
         <div className="flex flex-row items-center justify-center gap-4">
