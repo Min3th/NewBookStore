@@ -15,7 +15,7 @@ const BookForm: React.FC<BookFormProps> = ({ book, onSubmit, onInputChange }) =>
         e.preventDefault();
         onSubmit();
       }}
-      className="flex flex-col gap-4 p-4 bg-[#8b6c5c] rounded shadow-md m-8"
+      className="flex flex-col gap-4 p-4 bg-[#8b6c5c] rounded shadow-md m-8 h-[380px]"
     >
       <input
         className="rounded-[2px] text-center"

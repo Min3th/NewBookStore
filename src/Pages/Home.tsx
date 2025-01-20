@@ -1,55 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import BookLayer from './BookLayer';
+import React, { useEffect } from 'react';
 import { useAuthContext } from "@asgardeo/auth-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 
 // TypeScript types for the book objects
-interface Book {
-  id: number;
-  book_title: string;
-  author: string;
-  category: string;
-  published_year: number;
-  price: number;
-  copies_in_stock: number;
-}
 
-interface BookInsert {
-  book_title: string;
-  author: string;
-  category: string;
-  published_year: number;
-  price: number;
-  copies_in_stock: number;
-}
 
-interface BookUpdate {
-  book_title: string;
-}
 
-const BASE_URL =
-  'https://01d11625-95c9-4950-aac4-0db881d6a8a1-dev.e1-us-east-azure.choreoapis.dev/bookstore/bookstore-new/v1.0';
 
 const Home: React.FC = () => {
 
 
-  const { state, signIn, signOut,getAccessToken,getDecodedIDToken } = useAuthContext();
+  const { signIn, getAccessToken,getDecodedIDToken } = useAuthContext();
 
-  const [books, setBooks] = useState<Book[]>([]);
-  const [newBook, setNewBook] = useState<BookInsert>({
-    book_title: '',
-    author: '',
-    category: '',
-    published_year: 2021,
-    price: 0,
-    copies_in_stock: 0,
-  });
-  const [bookToUpdate, setBookToUpdate] = useState<{ id: string; book_title: string }>({ id: '', book_title: '' });
-  const [bookToDelete, setBookToDelete] = useState<string>('');
-
+  
+  
   useEffect(()=>{
     getAccessToken().then((accessToken)=>{
       console.log(accessToken);

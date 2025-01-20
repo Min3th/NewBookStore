@@ -112,7 +112,7 @@ const BookCard: React.FC<BookCardProps> = ({ book,onDelete,onUpdate}) => {
             Save
           </button>):(<button
               onClick={() => setIsEditing(true)}
-              className="bg-blue-500 text-white p-2 rounded"
+              className="bg-blue-500 text-white w-[62.91px] rounded"
             >
               Edit
             </button>

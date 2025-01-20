@@ -141,7 +141,7 @@ const BookLayer: React.FC = () => {
       <button className='text-[20px] absolute top-3 right-3 rounded-[10px] p-2 bg-red-500 m-2' onClick={ () => signOut() }>Logout</button>
       <h1 className="mt-10 text-[50px] m-5">BOOKS</h1>
       {error && <p className="text-red-500">{error}</p>}
-      <div className='flex flex-row'>
+      <div className='flex flex-row items-center'>
         <BookForm
             book={newBook}
             onSubmit={debouncedHandleCreateBook}
