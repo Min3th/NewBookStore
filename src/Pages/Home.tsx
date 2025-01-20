@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import BookLayer from '../Components/BookLayer';
+import BookLayer from './BookLayer';
 import { useAuthContext } from "@asgardeo/auth-react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 
 // TypeScript types for the book objects
@@ -61,55 +63,15 @@ const Home: React.FC = () => {
     console.log(error);
   })
 
-  // useEffect(() => {
-  //   fetchBooks();
-  // }, []);
-
-  // Fetch all books
-  // const fetchBooks = async () => {
-  //   try {
-  //     const response = await axios.get<Book[]>(`${BASE_URL}/books`);
-  //     setBooks(response.data);
-  //   } catch (error) {
-  //     console.error('Error fetching books:', error);
-  //   }
-  // };
-
-  // Create a new book
-  
-
-  // // Update a book
-  // const handleUpdateBook = async () => {
-  //   try {
-  //     const response = await axios.put<Book>(`${BASE_URL}/books/${bookToUpdate.id}`, {
-  //       book_title: bookToUpdate.book_title,
-  //     });
-  //     const updatedBooks = books.map((book) =>
-  //       book.id === response.data.id ? response.data : book
-  //     );
-  //     setBooks(updatedBooks);
-  //   } catch (error) {
-  //     console.error('Error updating book:', error);
-  //   }
-  // };
-
-  // // Delete a book
-  // const handleDeleteBook = async () => {
-  //   try {
-  //     const response = await axios.delete<Book>(`${BASE_URL}/books/${bookToDelete}`);
-  //     const updatedBooks = books.filter((book) => book.id !== response.data.id);
-  //     setBooks(updatedBooks);
-  //   } catch (error) {
-  //     console.error('Error deleting book:', error);
-  //   }
-  // };
+ 
 
   return (
     <div className='flex flex-col items-center justify-center w-screen min-h-screen bg-[#C4A484]'>
       <div className='font-medium text-[30px]'>Welcome to the</div>
-      <div className='font-semibold text-[100px] rounded-[10px] bg-[#7a5f51] shadow-lg p-4 tracking-[0.06em]'>BOOKSTORE</div>
+      
+      <div className='font-semibold text-[100px] rounded-[10px] bg-[#7a5f51] shadow-lg p-4 tracking-[0.06em]'><FontAwesomeIcon icon={faBook} className='text-[90px] mr-3' />BOOKSTORE</div>
 
-      <button className='text-[30px] rounded-[10px] p-2 bg-[#8b6c5c] m-2' onClick={ () => signIn() }>Login</button>
+      <button className='text-[30px] absolute top-0 right-2 rounded-[10px] p-2 bg-[#8b6c5c] m-1' onClick={ () => signIn() }>Login</button>
 
       
 

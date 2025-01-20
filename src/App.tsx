@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home';
-import { AuthProvider } from "@asgardeo/auth-react";
-import BookLayer from './Components/BookLayer';
 
+import { AuthProvider } from "@asgardeo/auth-react";
+
+const Home = lazy(()=> import('./Pages/Home'));
+const BookLayer= lazy(()=> import('./Pages/BookLayer'));
 
 const App: React.FC = () => {
   return (

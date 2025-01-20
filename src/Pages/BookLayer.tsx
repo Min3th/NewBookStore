@@ -1,10 +1,10 @@
 import { useAuthContext } from '@asgardeo/auth-react';
 import axios from 'axios';
 import React, { useState, useEffect, useCallback } from 'react';
-import BookCard from './BookCard';
-import BookForm from './BookForm';
-import * as bookService from './BookService'
-import { Book } from './types';
+import BookCard from '../Components/BookCard';
+import BookForm from '../Components/BookForm';
+import * as bookService from '../Components/BookService'
+import { Book } from '../Components/types';
 
 const REACT_APP_BASE_URL =
   'https://01d11625-95c9-4950-aac4-0db881d6a8a1-prod.e1-us-east-azure.choreoapis.dev/bookstore/bookstore-new/v1.0';
