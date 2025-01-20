@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
 import mockingjay from '../Images/mockingjay.jpg'
+import { Book } from './types';
 
-// Declare the interface for the component's props
-interface Book {
-  id: number;
-  book_title: string;
-  author: string;
-  category: string;
-  published_year: number;
-  price: number;
-  copies_in_stock: number;
-  
-}
+
 
 interface BookCardProps {
   book: Book;
@@ -90,7 +81,6 @@ const BookCard: React.FC<BookCardProps> = ({ book,onDelete,onUpdate}) => {
             onChange={e => setEditedBook({ ...editedBook, published_year: Number(e.target.value) })}
             placeholder="Year"
           />
-          {/* Add other input fields for editing as needed */}
           
         </>
       ) : (
@@ -113,11 +103,7 @@ const BookCard: React.FC<BookCardProps> = ({ book,onDelete,onUpdate}) => {
            Copies Available: {book.copies_in_stock}
           </p>
 
-        
-          {/* Add other book details here */}
           
-        
-
         </div>
           
       )}
